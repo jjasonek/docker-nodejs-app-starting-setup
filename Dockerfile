@@ -4,15 +4,17 @@ FROM node
 
 WORKDIR /app
 
+COPY package.json /app
+
+# install dependencies
+# inside the image
+RUN npm install
+
 # Copy all files and dirs from the path, where the Dockerfile is to
 # Folder /app inside the image.
 # In this case it is also .idea folder and *.iml file, so THIS IS WRONG.
 # since we set the WORKDIR, we don't need specify the path "/app" in here, but it is better for readability
 COPY . /app
-
-# install dependencies
-# inside the image
-RUN npm install
 
 EXPOSE 80
 
